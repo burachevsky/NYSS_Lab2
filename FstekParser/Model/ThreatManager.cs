@@ -70,6 +70,11 @@ namespace FstekParser
                     var oldThreats = Threats;
                     var newThreats = ThreatDatabase.Instance.UpdateThreats();
                     Threats = newThreats;
+
+                    if (newThreats != null && newThreats.Count > 0)
+                    {
+                        MessageBox.Show("Данные успешно обновлены");
+                    }
                 }
                 finally
                 {
