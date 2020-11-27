@@ -64,11 +64,17 @@ namespace FstekParser
         {
             RunAsync(() =>
             {
-                MainWindow.Button_refresh.IsEnabled = false;
-                var oldThreats = Threats;
-                var newThreats = ThreatDatabase.Instance.UpdateThreats();
-                Threats = newThreats;
-                MainWindow.Button_refresh.IsEnabled = true;
+                try
+                {
+                    MainWindow.Button_refresh.IsEnabled = false;
+                    var oldThreats = Threats;
+                    var newThreats = ThreatDatabase.Instance.UpdateThreats();
+                    Threats = newThreats;
+                }
+                finally
+                {
+                    MainWindow.Button_refresh.IsEnabled = true;
+                }
             });
         }
 
