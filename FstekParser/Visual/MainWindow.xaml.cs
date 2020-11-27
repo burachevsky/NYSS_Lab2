@@ -66,6 +66,8 @@ namespace FstekParser
 
             Button_left.IsEnabled = false;
             Button_right.IsEnabled = false;
+
+            Button_exit.Click += (o, a) => Application.Current.Shutdown();
         }
 
         public static void HandleException(Exception e)

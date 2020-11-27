@@ -94,6 +94,9 @@ namespace FstekParser
             {
                 ViolationsList.ListItems.Add(Item_AccessViolation);
             }
+
+            Button_Prev.IsEnabled = pos > 0;
+            Button_Next.IsEnabled = pos < threats.Count - 1;
         }
 
         private void Clear()
@@ -103,7 +106,6 @@ namespace FstekParser
             Description.Inlines.Clear();
             Source.Inlines.Clear();
             Target.Inlines.Clear();
-
             ViolationsList.ListItems.Clear();
         }
     }

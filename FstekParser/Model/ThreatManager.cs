@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using FstekParser.Visual;
 using Newtonsoft.Json;
 
 namespace FstekParser
@@ -68,12 +69,41 @@ namespace FstekParser
                 {
                     MainWindow.Button_refresh.IsEnabled = false;
                     var oldThreats = Threats;
-                    var newThreats = ThreatDatabase.Instance.UpdateThreats();
-                    Threats = newThreats;
-
-                    if (newThreats != null && newThreats.Count > 0)
+                    try
                     {
-                        MessageBox.Show("Данные успешно обновлены");
+                        var newThreats = ThreatDatabase.Instance.UpdateThreats();
+                        Threats = newThreats;
+
+                        if (newThreats != null && newThreats.Count > 0)
+                        {
+                            if (oldThreats != null)
+                            {
+                                var differences = CountDifference(oldThreats, newThreats);
+
+                                if (differences.Count == 0)
+                                {
+                                    MessageBox.Show("Данные успешно обновлены.\nИзменений не обнаружено.");
+                                }
+                                else
+                                {
+                                    new DifferenceListWindow(differences).ShowDialog();
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Данные успешно загружены");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("При обновлении данных произошла ошибка:");
+                        }
+
+                        
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show("При обновлении данных произошла ошибка:\n" + e.GetType() + e.StackTrace);
                     }
                 }
                 finally
@@ -82,7 +112,6 @@ namespace FstekParser
                 }
             });
         }
-
 
         public void OpenThreatViewer(int pos)
         {
@@ -137,5 +166,109 @@ namespace FstekParser
                 }
             }));
         }
+
+        private List<Difference> CountDifference(List<Threat> oldThreats, List<Threat> newThreats)
+        {
+            oldThreats.Sort();
+            newThreats.Sort();
+
+            var oldEn = oldThreats.GetEnumerator();
+            var newEn = newThreats.GetEnumerator();
+
+            var differenceList = new List<Difference>();
+
+            while (true)
+            {
+                var oldHasNext = oldEn.MoveNext();
+                var newHasNext = newEn.MoveNext();
+
+                Threat o;
+                Threat n;
+
+                if (!(oldHasNext || newHasNext))
+                {
+                    break;
+                }
+                
+                if (!oldHasNext)
+                {
+                    do
+                    {
+                        n = newEn.Current;
+                        differenceList.Add(new Difference(n.Id, null, n) );
+
+                    } while (newEn.MoveNext());
+
+                    break;
+                }
+                
+                if (!newHasNext)
+                {
+                    do
+                    {
+                        o = oldEn.Current;
+                        differenceList.Add(new Difference(o.Id, o, null) );
+
+                    } while (oldEn.MoveNext());
+
+                    break;
+                }
+
+                o = oldEn.Current;
+                n = newEn.Current;
+
+                if (o.Equals(n))
+                {
+                    continue;
+                }
+
+
+                if (o.Id == n.Id)
+                {
+                    differenceList.Add(new Difference(o.Id, o, n));
+                    continue;
+                }
+                
+                if (o > n)
+                {
+                    do
+                    {
+                        n = newEn.Current;
+                        
+                        if (o <= n)
+                        {
+                            break;
+                        }
+
+                        differenceList.Add(new Difference(n.Id, null, n) );
+                        
+                    } while (newEn.MoveNext());
+                }
+                else
+                {
+                    do
+                    {
+                        o = oldEn.Current;
+                        
+                        if (o >= n)
+                        {
+                            break;
+                        }
+
+                        differenceList.Add(new Difference(o.Id, o, null) );
+
+                    } while (oldEn.MoveNext());
+                }
+
+                if (!oldEn.Current.Equals(newEn.Current))
+                {
+                    differenceList.Add(new Difference(oldEn.Current.Id, oldEn.Current, newEn.Current));
+                }
+            }
+
+            return differenceList.Distinct().ToList();
+        }
+
+        
     }
 }

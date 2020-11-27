@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace FstekParser
 {
     [Serializable]
-    public class Threat
+    public class Threat : IComparable<Threat>
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -23,7 +23,8 @@ namespace FstekParser
         public bool Equals(Threat other)
         {
             return LastModificationDate.Equals(other.LastModificationDate) 
-                   && Id == other.Id && Name.Equals(other.Name) 
+                   && Id == other.Id 
+                   && Name.Equals(other.Name) 
                    && Description.Equals(other.Description) 
                    && Source.Equals(other.Source) 
                    && Target.Equals(other.Target) 
@@ -31,6 +32,26 @@ namespace FstekParser
                    && IntegrityViolation == other.IntegrityViolation 
                    && AccessViolation == other.AccessViolation 
                    && UploadDate.Equals(other.UploadDate);
+        }
+
+        public static bool operator >(Threat ths, Threat oth)
+        {
+            return ths.Id > oth.Id;
+        }
+
+        public static bool operator <(Threat ths, Threat oth)
+        {
+            return ths.Id < oth.Id;
+        }
+
+        public static bool operator >=(Threat ths, Threat oth)
+        {
+            return ths.Id >= oth.Id;
+        }
+
+        public static bool operator <=(Threat ths, Threat oth)
+        {
+            return ths.Id <= oth.Id;
         }
 
         public override int GetHashCode()
@@ -45,6 +66,11 @@ namespace FstekParser
                    AccessViolation.GetHashCode() + 
                    UploadDate.GetHashCode() + 
                    LastModificationDate.GetHashCode();
+        }
+
+        public int CompareTo(Threat other)
+        {
+            return this.Id - other.Id;
         }
     }
 }

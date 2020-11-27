@@ -55,5 +55,6 @@
                 VerticalAlignment="Top" Width="75" Height="26" />
         <Button x:Name="Button_refresh" Content="Обновить таблицу" HorizontalAlignment="Left" Margin="495,8,0,0"
                 VerticalAlignment="Top" Width="118" Height="26" />
+        <Button x:Name="Button_exit" Content="Выход" HorizontalAlignment="Left" Margin="627,8,0,0" VerticalAlignment="Top" Width="96" Height="26"/>
     </Grid>
 </Window>
