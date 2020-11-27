@@ -1,0 +1,59 @@
+﻿<Window x:Class="FstekParser.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FstekParser"
+        mc:Ignorable="d"
+        Title="MainWindow" Name="MWindow" MinHeight="600" MinWidth="800" Height="600" Width="800">
+
+    <Grid x:Name="Grid_Main">
+        <ListView x:Name="threatsList"
+                  d:DataContext="{d:DesignInstance local:Threat}"
+                  Margin="10,39,10,10"
+                  MouseDoubleClick="ThreatsList_OnMouseDoubleClick"
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid x:Name="StackPanel_Data" Height="55">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" x:Name="TextBlock_Id" FontSize="15" VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Text="{Binding Id, StringFormat=УБИ. {0:D3}}"
+                                   FontWeight="Bold"
+                                   Margin="0, 0, 20, 0" />
+                        <TextBlock MaxWidth="{Binding ElementName=threatsList, Path=ActualWidth}" 
+                                   Grid.Column="1" x:Name="TextBlock_Name" FontSize="15"
+                                   Padding="0, 0,50,0 "
+                                   TextWrapping="WrapWithOverflow" VerticalAlignment="Center"
+                                   Text="{Binding Name}"
+                                   FontWeight="Bold" />
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Label Content="Угроз на странице:" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top"
+               Width="118" Height="26" />
+        <ComboBox x:Name="ComboBox_pages" HorizontalAlignment="Left" Margin="133,8,0,0" VerticalAlignment="Top"
+                  Width="59" Height="26">
+            <ComboBox.Items>
+                <ComboBoxItem x:Name="ComboBoxItem_15" IsSelected="True">15</ComboBoxItem>
+                <ComboBoxItem x:Name="ComboBoxItem_30">30</ComboBoxItem>
+                <ComboBoxItem x:Name="ComboBoxItem_50">50</ComboBoxItem>
+                <ComboBoxItem x:Name="ComboBoxItem_100">100</ComboBoxItem>
+            </ComboBox.Items>
+        </ComboBox>
+        <Label x:Name="Label_pages" HorizontalAlignment="Left" Margin="214,8,0,0" VerticalAlignment="Top" Width="100"
+               Height="26" />
+        <Button x:Name="Button_left" Content="&lt;-" HorizontalAlignment="Left" Margin="319,8,0,0"
+                VerticalAlignment="Top" Width="75" Height="26" />
+        <Button x:Name="Button_right" Content="-&gt;" HorizontalAlignment="Left" Margin="407,8,0,0"
+                VerticalAlignment="Top" Width="75" Height="26" />
+        <Button x:Name="Button_refresh" Content="Обновить таблицу" HorizontalAlignment="Left" Margin="495,8,0,0"
+                VerticalAlignment="Top" Width="118" Height="26" />
+    </Grid>
+</Window>
