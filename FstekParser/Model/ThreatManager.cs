@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using FstekParser.Visual;
+using FstekParser;
 using Newtonsoft.Json;
 
 namespace FstekParser
@@ -91,7 +91,7 @@ namespace FstekParser
                             }
                             else
                             {
-                                MessageBox.Show("Данные успешно загружены");
+                                MessageBox.Show("Данные успешно загружены и теперь хранятся в C:\\FstekParser\\threats.JSON");
                             }
                         }
                         else
