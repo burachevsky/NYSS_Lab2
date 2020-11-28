@@ -1,2 +1,2 @@
 # NYSS_Lab2
-This is a small learning project
+wpf client for parsing threat database (https://bdu.fstec.ru/threat)
