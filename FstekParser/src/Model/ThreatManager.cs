@@ -46,12 +46,18 @@ namespace FstekParser.Model
                 }
                 catch (FileNotFoundException)
                 {
-                    MessageBox.Show("Тут пока ничего нет, но можно загрузить).\nНажмите 'Обновить таблицу' для первичной загрузки данных");
+                    MessageBox.Show(
+                        "Тут пока ничего нет, но можно загрузить).\nНажмите 'Обновить таблицу' для первичной загрузки данных");
                     return;
                 }
                 catch (JsonReaderException)
                 {
-                    MessageBox.Show("Серверное хранилище повреждено. Попробуйте обновить таблицу");
+                    MessageBox.Show("Локальное хранилище повреждено. Попробуйте обновить таблицу");
+                    return;
+                }
+                catch (JsonSerializationException)
+                {
+                    MessageBox.Show("Локальное хранилище повреждено. Попробуйте обновить таблицу");
                     return;
                 }
 
