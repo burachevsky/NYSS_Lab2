@@ -55,6 +55,11 @@ namespace FstekParser.Visual
                 UpdatePage();
             };
 
+            Button_help.Click += (o, a) =>
+            {
+                MessageBox.Show("Двойной клик по угрозе для просмотра её полной информации");
+            };
+
             Button_left.IsEnabled = false;
             Button_right.IsEnabled = false;
 

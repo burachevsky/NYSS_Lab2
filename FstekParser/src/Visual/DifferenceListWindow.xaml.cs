@@ -53,6 +53,11 @@ namespace FstekParser.Visual
                     threatViewerWindow.ShowDialog();
                 }
             };
+
+            Button_help.Click += (o, a) =>
+            {
+                MessageBox.Show("Двойной клик по угрозе для просмотра её полной информации");
+            };
         }
     }
 }

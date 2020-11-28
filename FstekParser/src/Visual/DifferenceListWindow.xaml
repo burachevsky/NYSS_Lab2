@@ -35,5 +35,6 @@
             </ListView.ItemTemplate>
         </ListView>
         <Label Content="Изменения" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button x:Name="Button_help" Content="?" HorizontalAlignment="Left" Margin="417,6,0,0" VerticalAlignment="Top" Width="16"/>
     </Grid>
 </Window>
