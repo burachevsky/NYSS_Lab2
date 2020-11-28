@@ -76,7 +76,7 @@ namespace FstekParser.Visual
             try
             {
                 var listView = sender as ListView;
-                var threatIndex = listView.SelectedIndex;
+                var threatIndex = listView.SelectedIndex + position;
 
                 if (threatIndex >= 0 && threatIndex < threats.Count)
                     ThreatManager.OpenThreatViewer(threatIndex);
