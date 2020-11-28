@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:model="clr-namespace:FstekParser.Model"
         mc:Ignorable="d"
-        Title="DifferenceListWindow" Height="450" Width="450" ResizeMode="NoResize">
+        Title="Список изменений в базе данных угроз" Height="450" Width="450" ResizeMode="NoResize">
     <Grid Margin="0,0,0,0">
         <ListView x:Name="ListView_Differences"
                   d:DataContext="{d:DesignInstance model:Difference}"

@@ -89,7 +89,7 @@ namespace FstekParser.Model
                             }
                             else
                             {
-                                MessageBox.Show("Данные успешно загружены и теперь хранятся в C:\\FstekParser\\threats.JSON");
+                                MessageBox.Show($"Данные успешно загружены и теперь хранятся в C:\\FstekParser\\threats.JSON\nКоличество элементов: {newThreats.Count}");
                             }
                         }
                         else

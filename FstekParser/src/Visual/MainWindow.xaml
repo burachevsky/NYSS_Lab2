@@ -6,7 +6,7 @@
         xmlns:model="clr-namespace:FstekParser.Model"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen" 
-        Title="MainWindow" Name="MWindow" MinHeight="600" MinWidth="800" Height="600" Width="800">
+        Title="Угрозы безопасности информации" Name="MWindow" MinHeight="600" MinWidth="800" Height="600" Width="800">
 
     <Grid x:Name="Grid_Main">
         <ListView x:Name="threatsList"
