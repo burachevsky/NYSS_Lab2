@@ -1,0 +1,125 @@
+﻿<Window x:Class="FstekParser.Visual.ThreatViewerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="Угроза безопасности информации" MinHeight="600" MinWidth="800" Height="600" Width="800">
+    <Window.Resources>
+        <Thickness x:Key="TextPadding">0, 0, 0, 0</Thickness>
+        <Thickness x:Key="HeaderPadding">0, 0, 0, 0</Thickness>
+        <Thickness x:Key="HeaderMargin">0, 25, 0, 0</Thickness>
+        <Thickness x:Key="TextMargin">0, 6, 0, 0</Thickness>
+        <system:Double x:Key="HeaderFontSize">24</system:Double>
+        <system:Double x:Key="TextFontSize">20</system:Double>
+        <FontFamily x:Key="HeaderFont">Times New Roman</FontFamily>
+        <FontFamily x:Key="TextFont">Calibri</FontFamily>
+    </Window.Resources>
+
+
+    <Grid>
+        <FlowDocumentScrollViewer IsToolBarVisible="True" Margin="0,0,-0.4,0" >
+
+            <FlowDocument PagePadding="50, 10, 50, 10">
+
+                <Paragraph x:Name="Id" FontWeight="Bold" FontSize="32" TextAlignment="Center" />
+
+                <Paragraph FontWeight="Bold" 
+                           FontSize="{StaticResource HeaderFontSize}" 
+                           Padding="{StaticResource HeaderPadding}"
+                           FontFamily="{StaticResource HeaderFont}"
+                           Margin="{StaticResource HeaderMargin}">
+                    <Run Text="Наименование угрозы" />
+                </Paragraph>
+                <Paragraph x:Name="Name" 
+                           FontSize="{StaticResource TextFontSize}" 
+                           FontFamily="{StaticResource TextFont}"
+                           TextAlignment="Justify" 
+                           Margin="{StaticResource TextMargin}"
+                           Padding="{StaticResource TextPadding}" />
+
+                <Paragraph FontWeight="Bold" 
+                           FontSize="{StaticResource HeaderFontSize}"
+                           FontFamily="{StaticResource HeaderFont}"
+                           Padding="{StaticResource HeaderPadding}"
+                           Margin="{StaticResource HeaderMargin}">
+                    <Run Text="Описание" />
+                </Paragraph>
+                <Paragraph x:Name="Description" 
+                           FontSize="{StaticResource TextFontSize}" 
+                           FontFamily="{StaticResource TextFont}"
+                           TextAlignment="Justify" 
+                           Margin="{StaticResource TextMargin}"
+                           Padding="{StaticResource TextPadding}" />
+
+                <Paragraph FontWeight="Bold" 
+                           FontSize="{StaticResource HeaderFontSize}" 
+                           FontFamily="{StaticResource HeaderFont}"
+                           Padding="{StaticResource HeaderPadding}"
+                           Margin="{StaticResource HeaderMargin}">
+                    <Run Text="Источник угрозы (характеристика и потенциал нарушителя)" />
+                </Paragraph>
+                <Paragraph x:Name="Source" 
+                           FontSize="{StaticResource TextFontSize}" 
+                           FontFamily="{StaticResource TextFont}"
+                           TextAlignment="Justify" 
+                           Margin="{StaticResource TextMargin}"
+                           Padding="{StaticResource TextPadding}" />
+
+                <Paragraph FontWeight="Bold" 
+                           FontSize="{StaticResource HeaderFontSize}" 
+                           FontFamily="{StaticResource HeaderFont}"
+                           Padding="{StaticResource HeaderPadding}"
+                           Margin="{StaticResource HeaderMargin}">
+                    <Run Text="Объект воздействия" />
+                </Paragraph>
+                <Paragraph x:Name="Target" 
+                           FontSize="{StaticResource TextFontSize}" 
+                           FontFamily="{StaticResource TextFont}"
+                           TextAlignment="Justify"
+                           Margin="{StaticResource TextMargin}"
+                           Padding="{StaticResource TextPadding}" />
+
+                <Paragraph FontWeight="Bold" 
+                           FontSize="{StaticResource HeaderFontSize}" 
+                           FontFamily="{StaticResource HeaderFont}"
+                           Padding="{StaticResource HeaderPadding}"
+                           Margin="{StaticResource HeaderMargin}">
+                    <Run Text="Последствия" />
+                </Paragraph>
+                <List x:Name="ViolationsList">
+                    <ListItem x:Name="Item_ConfidenceViolation">
+                        <Paragraph FontSize="{StaticResource TextFontSize}" 
+                                   FontFamily="{StaticResource TextFont}"
+                                   Margin="{StaticResource TextMargin}">
+                            <Run Text="Нарушение конфиденциальности" />
+                        </Paragraph>
+                    </ListItem>
+                    <ListItem x:Name="Item_IntegrityViolation">
+                        <Paragraph FontSize="{StaticResource TextFontSize}" 
+                                   FontFamily="{StaticResource TextFont}"
+                                   Margin="{StaticResource TextMargin}">
+                            <Run Text="Нарушение целостности" />
+                        </Paragraph>
+                    </ListItem>
+                    <ListItem x:Name="Item_AccessViolation" >
+                        <Paragraph FontSize="{StaticResource TextFontSize}" 
+                                   FontFamily="{StaticResource TextFont}"
+                                   Margin="{StaticResource TextMargin}">
+                            <Run Text="Нарушение доступности"/>
+                        </Paragraph>
+                    </ListItem>
+                </List>
+
+            </FlowDocument>
+
+        </FlowDocumentScrollViewer>
+        <DockPanel HorizontalAlignment="Center" VerticalAlignment="Bottom">
+            <Button x:Name="Button_Prev" HorizontalAlignment="Left" VerticalAlignment="Top" MaxWidth="100" Content="&lt;- Предыдущая"/>
+            <Button x:Name="Button_ToThreatList" HorizontalAlignment="Left"  VerticalAlignment="Top" MaxWidth="120">К общему списку</Button>
+            <Button x:Name="Button_Next" HorizontalAlignment="Left" VerticalAlignment="Top" MaxWidth="100" Content="Слудующая -&gt;"/>
+        </DockPanel>
+        
+    </Grid>
+</Window>

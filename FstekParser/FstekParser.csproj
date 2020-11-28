@@ -83,29 +83,37 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="Visual\App.xaml">
+    <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\ThreatManager.cs" />
-    <Compile Include="Model\Threat.cs" />
-    <Compile Include="Model\ThreatDatabase.cs" />
-    <Compile Include="Visual\ThreatViewerWindow.xaml.cs">
+    <Compile Include="src\Model\Difference.cs" />
+    <Compile Include="src\Model\ThreatManager.cs" />
+    <Compile Include="src\Model\Threat.cs" />
+    <Compile Include="src\Model\ThreatDatabase.cs" />
+    <Compile Include="src\Visual\DifferenceListWindow.xaml.cs">
+      <DependentUpon>DifferenceListWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="src\Visual\ThreatViewerWindow.xaml.cs">
       <DependentUpon>ThreatViewerWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Visual\MainWindow.xaml">
+    <Page Include="src\Visual\DifferenceListWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="src\Visual\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Visual\App.xaml.cs">
+    <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Visual\MainWindow.xaml.cs">
+    <Compile Include="src\Visual\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Visual\ThreatViewerWindow.xaml">
+    <Page Include="src\Visual\ThreatViewerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
