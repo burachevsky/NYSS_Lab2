@@ -3,3 +3,6 @@
 ################################################################################
 
 /FstekParser/obj/Debug
+/FstekParser/bin/Debug
+/packages
+/.vs/FstekParser/v16
